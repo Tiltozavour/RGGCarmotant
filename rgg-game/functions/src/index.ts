@@ -14,7 +14,11 @@ const assertAdmin = async (uid: string) => {
   }
 };
 
-export const resetPlayerPassword = onCall(async (request) => {
+export const resetPlayerPassword = onCall({
+  // Разрешаем запросы со всех доменов или конкретно с твоего github.io
+  // Это добавит необходимые заголовки Access-Control-Allow-Origin
+  cors: true, 
+}, async (request) => {
   if (!request.auth?.uid) {
     throw new HttpsError("unauthenticated", "You must be signed in.");
   }
