@@ -2,7 +2,7 @@ import { httpsCallable } from "firebase/functions";
 import { functions } from "../firebase";
 
 interface ResetPlayerPasswordPayload {
-  playerId: string;
+  login: string;
   temporaryPassword: string;
 }
 
@@ -10,15 +10,26 @@ interface ResetPlayerPasswordResult {
   ok: boolean;
 }
 
+
 export const resetPlayerPassword = async (
-  playerId: string,
+  login: string,
   temporaryPassword: string,
 ) => {
+
   const resetPassword = httpsCallable<
     ResetPlayerPasswordPayload,
     ResetPlayerPasswordResult
-  >(functions, "resetPlayerPassword");
+  >(
+    functions,
+    "resetPlayerPassword"
+  );
 
-  const result = await resetPassword({ playerId, temporaryPassword });
+
+  const result = await resetPassword({
+    login,
+    temporaryPassword,
+  });
+
+
   return result.data;
 };

@@ -75,7 +75,7 @@ function PlayersSidebar({
 
     setIsResettingPassword(true);
     try {
-      await resetPlayerPassword(target.playerId, password);
+     await resetPlayerPassword(target.login, password);
       setPasswordDialog(null);
       setPasswordResetNotice(`Пароль для игрока ${target.login} сброшен. Передайте ему временный пароль.`);
     } catch (error) {
