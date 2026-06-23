@@ -1213,6 +1213,7 @@ function AppClean() {
         onAddCard={handlers.handleAdminAddCard}
         onRemoveCard={handlers.handleAdminRemoveCard}
         onClearStatus={handlers.handleAdminClearStatus}
+        onOpenGambling={handlers.handleAdminOpenGambling}
         gameHistory={gameState.gameHistory}
         currentUserId={user?.uid || null}
         onClose={() => setIsPlayersSidebarOpen(false)}

@@ -3936,6 +3936,19 @@ export function useGameData(
     }
   };
 
+  const handleAdminOpenGambling = async (targetId: string) => {
+    if (!isAdmin) return;
+    const cards = getRandomInteractionCardIds("gambling", allCards);
+    await updateDoc(doc(db, "gameState", "current"), {
+      activeInteraction: {
+        playerId: targetId,
+        type: "gambling",
+        cards,
+      },
+    });
+    notify(`Гемблинг открыт для игрока.`, "info");
+  };
+
   const handleAdminClearStatus = async (targetId: string) => {
     if (!isAdmin) return;
     try {
@@ -4048,6 +4061,7 @@ export function useGameData(
       handleAdminAddCard,
       handleAdminRemoveCard,
       handleAdminClearStatus,
+      handleAdminOpenGambling,
     },
   };
 }

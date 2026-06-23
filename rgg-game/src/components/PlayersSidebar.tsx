@@ -21,6 +21,7 @@ interface PlayersSidebarProps {
   onAddCard: (targetId: string, cardId: string) => Promise<void>;
   onRemoveCard: (targetId: string, cardId: string) => Promise<void>;
   onClearStatus: (targetId: string) => Promise<void>;
+  onOpenGambling: (targetId: string) => Promise<void>;
   gameHistory: GameHistoryEntry[];
   currentUserId: string | null;
   onClose: () => void;
@@ -39,6 +40,7 @@ function PlayersSidebar({
   onAddCard,
   onRemoveCard,
   onClearStatus,
+  onOpenGambling,
   gameHistory,
   currentUserId,
   onClose,
@@ -214,6 +216,13 @@ function PlayersSidebar({
                                 className="px-1.5 py-0.5 bg-red-500/10 text-red-300 border border-red-500/30 rounded text-[9px] hover:bg-red-500/20 transition-colors"
                               >
                                 Пароль
+                              </button>
+                              
+                              <button
+                                onClick={() => void onOpenGambling(row.playerId)}
+                                className="px-1.5 py-0.5 bg-blue-500/10 text-blue-300 border border-blue-500/30 rounded text-[9px] hover:bg-blue-500/20 transition-colors"
+                              >
+                                Гемблинг
                               </button>
                               {hasCustomStatus && (
                                 <button
